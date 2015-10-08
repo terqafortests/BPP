@@ -6,6 +6,9 @@ import utils.MainClass;
 
 public class SelectPaperPage extends MainClass {
 	
+	public static By open = By.id("open_button");
+	public static By logout = By.id("logout_button");
+	
 	public static void selectCourse(String courseName) {
 		clickOn(By.xpath("//div[@id='myModal']//label[contains(., '" + courseName + "')]"));
 	}
