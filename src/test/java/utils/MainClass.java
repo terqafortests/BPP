@@ -21,9 +21,19 @@ public class MainClass extends WebBrowser {
 	}
 	
 	public static void clickOn(By by) {
-		getElement(by).click();
+		WebElement element = getElement(by);
+		if (element.isDisplayed()){
+			element.click();
+		} else {
+			System.out.println("Element is not displayed on the page");
+		}
 	}
 	
+	public static void enterText(By by, String text) {
+		WebElement element = getElement(by);
+		element.clear();
+		element.sendKeys(text);		
+	}
 	
 
 }
