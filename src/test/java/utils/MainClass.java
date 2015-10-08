@@ -8,6 +8,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class MainClass extends WebBrowser {
 	
+	public static void getPage(String address) {
+		Driver().get(address);
+	}
+	
 	public static WebElement getElement(By by) {
 		WebDriverWait wait = new WebDriverWait(Driver(), 60);
 		WebElement element = null;
@@ -35,5 +39,12 @@ public class MainClass extends WebBrowser {
 		element.sendKeys(text);		
 	}
 	
-
+	public static void switchToFrame(String frameId) {
+		try {
+		Driver().switchTo().frame(frameId);
+		} catch (Exception e) {
+			System.out.println("Cannot switch to frame " + frameId);
+			Driver().switchTo().frame(frameId);
+		}
+	}	
 }
