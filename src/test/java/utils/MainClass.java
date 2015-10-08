@@ -46,5 +46,13 @@ public class MainClass extends WebBrowser {
 			System.out.println("Cannot switch to frame " + frameId);
 			Driver().switchTo().frame(frameId);
 		}
-	}	
+	}
+	
+	public static void sleepFor(int msec) {
+		try {
+			Thread.sleep(msec);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
 }
