@@ -23,7 +23,7 @@ public class WebBrowser {
 	// file
 	@Parameters("browser")
 	@BeforeTest
-	public void initWebBrowser(@Optional(value = "Chrome") String browser) {
+	public void initWebBrowser(@Optional(value = "Firefox") String browser) {
 
 		if (browser.equalsIgnoreCase("Firefox")) {
 			driver = new FirefoxDriver();

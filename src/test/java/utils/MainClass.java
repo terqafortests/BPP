@@ -1,7 +1,10 @@
 package utils;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.NoSuchElementException;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -10,6 +13,10 @@ public class MainClass extends WebBrowser {
 	
 	public static void getPage(String address) {
 		Driver().get(address);
+	}
+	
+	public static String getCurrUrl() {
+		return Driver().getCurrentUrl();
 	}
 	
 	public static WebElement getElement(By by) {
@@ -54,5 +61,18 @@ public class MainClass extends WebBrowser {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public static WebDriver switchToTab(int i) {
+		return Driver().switchTo().window(getTabs().get(i));
+	}
+
+	public static List<String> getTabs() {
+		List<String> windows = new ArrayList<String>(Driver().getWindowHandles());
+		return windows;
+	}
+	
+	public static void closeTab(int i) {
+		switchToTab(i).close();
 	}
 }
