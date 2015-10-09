@@ -13,7 +13,7 @@ public class LoginPage extends MainClass {
     public static By submit = By.name("submit");
 
 
-    public void login(String user, String pass) {
+    public static void login(String user, String pass) {
         getPage("https://bpp-test.apolloglobal.int/ncas/login?service=https://bpp-fusion-test.apolloglobal.int/delegate/fusion-loginconfirm");
         enterText(username, user);
         enterText(password, pass);
