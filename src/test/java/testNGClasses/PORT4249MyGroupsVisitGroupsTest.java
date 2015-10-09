@@ -7,9 +7,9 @@ import pages.MyGroupsPage;
 import pages.SelectPaperPage;
 import utils.MainClass;
 
-public class PORT4249MyGroupsVisitGroups extends MainClass {
+public class PORT4249MyGroupsVisitGroupsTest extends MainClass {
 	@Test
-	public void port4249MyGroupsVisitGroups() {
+	public void port4249MyGroupsVisitGroupsTest() {
 		LoginPage.login("BP5003200", "Gr091714");
 		switchToFrame(SelectPaperPage.iFrame);
 		SelectPaperPage.selectCourse("Roma Test Course 1");

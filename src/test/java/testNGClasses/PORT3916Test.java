@@ -7,9 +7,9 @@ import pages.MyLearningPage;
 import pages.SelectPaperPage;
 import utils.MainClass;
 
-public class PORT3916 extends MainClass {
+public class PORT3916Test extends MainClass {
 	@Test
-	public void port3916() {
+	public void port3916Test() {
 		LoginPage.login("BP5003200", "Gr091714");
 		switchToFrame(SelectPaperPage.iFrame);
 		SelectPaperPage.selectCourse("Roma Test Course 1");

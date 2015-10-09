@@ -6,9 +6,9 @@ import pages.LoginPage;
 import pages.SelectPaperPage;
 import utils.MainClass;
 
-public class PORT3858 extends MainClass {
+public class PORT3858Test extends MainClass {
 	@Test
-	public void port3858() {
+	public void port3858Test() {
 		LoginPage.login("BP5033287", "In100715");
 		switchToFrame(SelectPaperPage.iFrame);
 		Assert.assertTrue(getElement(SelectPaperPage.messageArea).getText()
