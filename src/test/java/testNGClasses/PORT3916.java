@@ -1,7 +1,7 @@
 package testNGClasses;
 
-import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.testng.Assert;
 import pages.LoginPage;
 import pages.MyLearningPage;
 import pages.SelectPaperPage;

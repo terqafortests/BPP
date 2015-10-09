@@ -1,7 +1,7 @@
 package testNGClasses;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
-import junit.framework.Assert;
 import pages.LoginPage;
 import pages.MyGroupsPage;
 import pages.SelectPaperPage;
