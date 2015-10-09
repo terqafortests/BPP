@@ -1,12 +1,26 @@
 package pages;
 
-import org.openqa.selenium.By;
+import org.openqa.selenium.*;
 import utils.MainClass;
+import org.openqa.selenium.support.ui.Select;
+
+import java.util.List;
+
 
 /**
  * Created by roma on 10/8/15.
  */
 public class MyLearningPage extends MainClass {
+
+
+    public static By dropDowm = By.name("select_course");
+
+    public static void changeCourse(String name) {
+        Select sel = new Select(getElement(dropDowm));
+        sel.selectByVisibleText(name);
+
+    }
+
 
 
 
