@@ -83,4 +83,8 @@ public class MainClass extends WebBrowser {
 	public static String getElementText (By by) {
 		return getElement(by).getText();
 	}
+	
+	public static void switchToDefaultFrame() {
+		Driver().switchTo().defaultContent();
+	}
 }
