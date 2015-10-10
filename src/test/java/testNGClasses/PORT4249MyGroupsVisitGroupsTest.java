@@ -14,8 +14,10 @@ public class PORT4249MyGroupsVisitGroupsTest extends MainClass {
 		switchToFrame(SelectPaperPage.iFrame);
 		SelectPaperPage.selectCourse("Roma Test Course 1");
 		clickOn(SelectPaperPage.open);
+		switchToDefaultFrame();
 		clickOn(MyGroupsPage.myGroups);
-		Assert.assertEquals(getElement(MyGroupsPage.mainContent).getText(),
+		switchToFrame(SelectPaperPage.iFrame);
+		Assert.assertEquals(getElementText(MyGroupsPage.mainContent),
 				"To visit any of the groups you currently belong to, simply click the relevant title below.");
 	}
 }

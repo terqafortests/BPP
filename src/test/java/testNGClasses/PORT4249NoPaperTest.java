@@ -11,7 +11,7 @@ public class PORT4249NoPaperTest extends MainClass {
 	public void port4249NoPaperTest() {
 		LoginPage.login("BP5033281", "Kp100615");
 		switchToFrame(SelectPaperPage.iFrame);
-		Assert.assertEquals(getElement(SelectPaperPage.messageArea).getText(),
+		Assert.assertEquals(getElementText(SelectPaperPage.messageArea),
 				"Sorry, there are no courses you can login to right now, this may be because the course you’ve enrolled on has either not started or expired.");
 	}
 }
