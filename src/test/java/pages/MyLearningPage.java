@@ -13,6 +13,8 @@ public class MyLearningPage extends MainClass {
     public static By dropDowm = By.name("select_course");
     public static By helpLink = By.id("forumhelplink");
     public static By courseName = By.xpath("//div[@class='wa_courseformat']/h1");
+    public static By userDropdown = By.cssSelector(".caret");
+    public static By myProfile = By.linkText("My Profile");
 
     public static void changeCourse(String name) {
         Select sel = new Select(getElement(dropDowm));
