@@ -75,4 +75,12 @@ public class MainClass extends WebBrowser {
 	public static void closeTab(int i) {
 		switchToTab(i).close();
 	}
+	
+	public static String getElementAtt (By by, String attName) {
+		return getElement(by).getAttribute(attName);
+	}
+	
+	public static String getElementText (By by) {
+		return getElement(by).getText();
+	}
 }
