@@ -22,11 +22,11 @@ public class MyLearningPage extends MainClass {
 
     }
 
-    public void selectStep(int num) {
+    public static void selectStep(int num) {
      clickOn(By.xpath("//div[@class='step_button']//*[contains(text(), 'Step " + num + "')]"));
     }
 
-    public void selectTopic(int topNun) {
-        clickOn(By.xpath("//div[@class='topics']//*[contains(text(), '" + topNun + "')]"));
+    public static void selectTopic(int topNum) {
+        clickOn(By.xpath("//div[@class='topics']//*[contains(text(), '" + topNum + "')]"));
     }
 }
