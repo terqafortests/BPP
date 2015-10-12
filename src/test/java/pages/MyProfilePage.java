@@ -1,4 +1,4 @@
-package Actions;
+package pages;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,7 +6,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import utils.MainClass;
 
-public class WebTable extends MainClass {
+public class MyProfilePage extends MainClass {
+	
+	public static By myProfTable = By.id("generalSettingsForm");
 	
 	public static ArrayList<String> getTableData(By tableID) {
 		ArrayList<String> tableData = new ArrayList<String>();
@@ -15,10 +17,8 @@ public class WebTable extends MainClass {
 		   for (WebElement row : rows) {
 		      List<WebElement> cols = row.findElements(By.tagName("td"));
 		      for (WebElement col : cols) {
-//		         System.out.print(col.getText() + "\t");
 		         tableData.add(col.getText() + "\t");
 		      }
-		   System.out.println();
 		   }
 		   return tableData;
 		}
