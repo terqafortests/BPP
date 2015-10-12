@@ -1,5 +1,6 @@
 package Actions;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.Select;
 import utils.MainClass;
@@ -9,7 +10,11 @@ import utils.MainClass;
  */
 public class MarkingWorkflow extends MainClass {
 
-    public static void lockSubmission() {
+    public static By operation = By.id("id_operation");
+
+//    lock submission and send to marker
+
+    public static void lockSubmission(String name, String course, int step, String act) {
         getPage("http://bpp-fusion-test.apolloglobal.int/vle/");
         clickOn(By.linkText("Log in"));
         clickOn(By.linkText("CAS users"));
@@ -18,14 +23,30 @@ public class MarkingWorkflow extends MainClass {
         clickOn(By.name("submit"));
         getPage("http://bpp-fusion-test.apolloglobal.int/vle/");
         clickOn(By.linkText("Ach Ladder (fusion)"));
-        clickOn(By.linkText("Roma Test Course 1"));
-        selectStep(8);
+        clickOn(By.linkText(course));
+        selectStep(step);
         clickOn(By.xpath("//div[@class='buttons']//*[contains(text(), '" + "TAKE ASSESSMENT" + "')]"));
         clickOn(By.linkText("View/grade all submissions"));
-        String name = "Calendar001 StCal001";
         clickOn(By.xpath("//tr/td[contains(., 'Select " + name + "')]/input[@name='selectedusers']"));
+        withOperation(act);
+        clickOn(By.id("id_submit"));
+        Driver().switchTo().alert().accept();
 
-        sleepFor(30000);
+
+
+        sleepFor(30000);;
+    }
+
+//    login as marker and estimate
+    public static void estimate() {
+        String user = "A.CoachI";
+        String pass = "Co121514";
+
+    }
+
+    public static void withOperation(String act) {
+        Select sel = new Select(getElement(operation));
+        sel.selectByVisibleText(act);
     }
 
     public static void selectStep(int num) {
