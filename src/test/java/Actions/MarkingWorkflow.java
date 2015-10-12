@@ -25,14 +25,7 @@ public class MarkingWorkflow extends MainClass {
         String name = "Calendar001 StCal001";
         clickOn(By.xpath("//tr/td[contains(., 'Select " + name + "')]/input[@name='selectedusers']"));
 
-
-
         sleepFor(30000);
-
-
-
-
-
     }
 
     public static void selectStep(int num) {
