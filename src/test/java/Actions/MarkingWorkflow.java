@@ -22,8 +22,10 @@ public class MarkingWorkflow extends MainClass {
         selectStep(8);
         clickOn(By.xpath("//div[@class='buttons']//*[contains(text(), '" + "TAKE ASSESSMENT" + "')]"));
         clickOn(By.linkText("View/grade all submissions"));
-//        Select stud = new Select(getElement(By.linkText("Calendar001 StCal001")));
-        Select stud = new Select(getElement(By.xpath("//div[@class='no-overflow']//[contains(text(), '" + "Calendar001 StCal001" + "')]:: preceding-sibling::*[2]")));
+        String name = "Calendar001 StCal001";
+        clickOn(By.xpath("//tr/td[contains(., 'Select " + name + "')]/input[@name='selectedusers']"));
+
+
 
         sleepFor(30000);
 
