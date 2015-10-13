@@ -2,6 +2,10 @@ package Actions;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoAlertPresentException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 import utils.MainClass;
 
@@ -14,7 +18,8 @@ public class MarkingWorkflow extends MainClass {
 
 //    lock submission and send to marker
 
-    public static void lockSubmission(String name, String course, int step, String act, String courseGroup) {
+    public void lockSubmission(String name, String course, int step, String act, String courseGroup) {
+
         String markerName = "AlexN CoachI";
         getPage("http://bpp-fusion-test.apolloglobal.int/vle/");
         clickOn(By.linkText("Log in"));
@@ -33,19 +38,25 @@ public class MarkingWorkflow extends MainClass {
         clickOn(By.xpath("//tr/td[contains(., 'Select " + name + "')]/input[@name='selectedusers']"));
         withOperation(act);
         clickOn(By.id("id_submit"));
-        Driver().switchTo().alert().accept();
+
+        if (isAlertPres() == true)
+            Driver().switchTo().alert().accept();
+
         clickOn(By.xpath("//tr/td[contains(., 'Select " + name + "')]/input[@name='selectedusers']"));
         setMarker();
-        Driver().switchTo().alert().accept();
+        clickOn(By.id("id_submit"));
+
+        if (isAlertPres() == true)
+            Driver().switchTo().alert().accept();
+
+        sleepFor(5000);
+
         selectMarker(markerName);
         getPage("http://bpp-fusion-test.apolloglobal.int/vle/");
         clickOn(By.linkText("BPP generic"));
+        clickOn(By.linkText("AlexNIII CoachIII"));
         clickOn(By.linkText("Log out")); // Not sure
-
-
-
-
-        sleepFor(30000);;
+        sleepFor(5000);;
     }
 
 //    login as marker and estimate
@@ -77,8 +88,11 @@ public class MarkingWorkflow extends MainClass {
     }
 
     public static void selectMarker(String markerName) {
-        Select select = new Select(getElement(By.name("allocatedmarker")));
+//        Select select = new Select(getElement(By.xpath("//*[@id='id_operation']")));
+        Select select = new Select(getElement(By.xpath("//div[@class='felement fselect']/select[@name='allocatedmarker']")));
+//        Select select = new Select(getElement(By.name("operation")));
         select.selectByVisibleText(markerName);
+        clickOn(By.id("id_submitbutton"));
     }
 
     public static void changeSubmission(String name) {
@@ -99,5 +113,15 @@ public class MarkingWorkflow extends MainClass {
 
     public static void selectStep(int num) {
         clickOn(By.xpath("//div[@class='step_button']//*[contains(text(), 'Step " + num + "')]"));
+    }
+
+
+    public boolean isAlertPres() {
+        try {
+            Driver().switchTo().alert();
+            return true;
+        } catch (NoAlertPresentException e) {
+            return false;
+        }
     }
 }
