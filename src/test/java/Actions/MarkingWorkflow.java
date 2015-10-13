@@ -14,7 +14,8 @@ public class MarkingWorkflow extends MainClass {
 
 //    lock submission and send to marker
 
-    public static void lockSubmission(String name, String course, int step, String act) {
+    public static void lockSubmission(String name, String course, int step, String act, String courseGroup) {
+        String markerName = "AlexN CoachI";
         getPage("http://bpp-fusion-test.apolloglobal.int/vle/");
         clickOn(By.linkText("Log in"));
         clickOn(By.linkText("CAS users"));
@@ -23,6 +24,8 @@ public class MarkingWorkflow extends MainClass {
         clickOn(By.name("submit"));
         getPage("http://bpp-fusion-test.apolloglobal.int/vle/");
         clickOn(By.linkText("Ach Ladder (fusion)"));
+        clickOn(By.linkText("All courses"));
+        clickOn(By.linkText(courseGroup));
         clickOn(By.linkText(course));
         selectStep(step);
         clickOn(By.xpath("//div[@class='buttons']//*[contains(text(), '" + "TAKE ASSESSMENT" + "')]"));
@@ -31,6 +34,14 @@ public class MarkingWorkflow extends MainClass {
         withOperation(act);
         clickOn(By.id("id_submit"));
         Driver().switchTo().alert().accept();
+        clickOn(By.xpath("//tr/td[contains(., 'Select " + name + "')]/input[@name='selectedusers']"));
+        setMarker();
+        Driver().switchTo().alert().accept();
+        selectMarker(markerName);
+        getPage("http://bpp-fusion-test.apolloglobal.int/vle/");
+        clickOn(By.linkText("BPP generic"));
+        clickOn(By.linkText("Log out")); // Not sure
+
 
 
 
@@ -38,10 +49,47 @@ public class MarkingWorkflow extends MainClass {
     }
 
 //    login as marker and estimate
-    public static void estimate() {
+    public static void estimate(String name, String course, int step, String markerName, String courseGroup) {
         String user = "A.CoachI";
         String pass = "Co121514";
 
+        clickOn(By.linkText("Log in"));
+        clickOn(By.linkText("CAS users"));
+        enterText(By.id("username"), user);
+        enterText(By.id("password"), pass);
+        clickOn(By.name("submit"));
+        getPage("http://bpp-fusion-test.apolloglobal.int/vle/");
+        clickOn(By.linkText("Ach Ladder (fusion)"));
+//        clickOn(By.linkText("All courses"));
+//        clickOn(By.linkText(courseGroup));
+        clickOn(By.linkText(course));
+        selectStep(step);
+        clickOn(By.xpath("//div[@class='buttons']//*[contains(text(), '" + "TAKE ASSESSMENT" + "')]"));
+        clickOn(By.linkText("View/grade all submissions"));
+        clickOn(By.xpath("//tr/td[contains(., 'Select " + name + "')]/input[@name='selectedusers']"));
+        withOperation("Grant extension");
+        Driver().switchTo().alert().accept();
+        enterText(By.xpath("//tr/td[contains(., '" + name + "')]/following-sibling::td[4]/input[@type='text']"), "90");
+        changeSubmission(name);
+
+
+
+    }
+
+    public static void selectMarker(String markerName) {
+        Select select = new Select(getElement(By.name("allocatedmarker")));
+        select.selectByVisibleText(markerName);
+    }
+
+    public static void changeSubmission(String name) {
+//        Select select = new Select(getElement(By.id("menuquickgrade_"+ * +"_workflowstate")));
+//        Select select = new Select(getElement(By.xpath("//tr/td[contains(., '" + name + "')]/following-sibling::td[2]/")));
+//        select.selectByValue("released");
+    }
+
+    public static void setMarker() {
+        Select select = new Select(getElement(operation));
+        select.selectByVisibleText("Set allocated marker");
     }
 
     public static void withOperation(String act) {
