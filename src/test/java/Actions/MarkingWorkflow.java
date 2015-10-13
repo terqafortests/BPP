@@ -1,10 +1,10 @@
 package Actions;
 
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.support.ui.Select;
 import utils.MainClass;
+
 
 /**
  * Created by roma on 10/9/15.
@@ -12,6 +12,23 @@ import utils.MainClass;
 public class MarkingWorkflow extends MainClass {
 
     public static By operation = By.id("id_operation");
+
+    public void estimeteStudent(String name, String course, int step, String act, String secAct, String courseGroup) {
+
+        /**
+         * name - student name
+         * course - needed course
+         * step - number of step
+         * lock - action (lock submission)
+         * unlock - action (unlock submission)
+         * courseGroup - course category
+         * */
+
+        lockSubmission(name, course, step, act, courseGroup);
+        estimate(name, course, step);
+        unlockSubmission(name, course, step, secAct,  courseGroup);
+
+    }
 
 //    lock submission and send to marker
 
@@ -53,11 +70,11 @@ public class MarkingWorkflow extends MainClass {
         clickOn(By.linkText("BPP generic"));
         clickOn(By.linkText("AlexNIII CoachIII"));
         clickOn(By.linkText("Log out")); // Not sure
-        sleepFor(5000);;
+        sleepFor(5000);
     }
 
 //    login as marker and estimate
-    public void estimate(String name, String course, int step, String markerName, String courseGroup) {
+    public void estimate(String name, String course, int step) {
         String user = "A.CoachI";
         String pass = "Co121514";
         getPage("http://bpp-fusion-test.apolloglobal.int/vle/");
@@ -74,35 +91,56 @@ public class MarkingWorkflow extends MainClass {
         clickOn(By.xpath("//div[@class='buttons']//*[contains(text(), '" + "TAKE ASSESSMENT" + "')]"));
         clickOn(By.linkText("View/grade all submissions"));
         clickOn(By.xpath("//tr/td[contains(., 'Select " + name + "')]/input[@name='selectedusers']"));
-//        withOperation("Grant extension");
+        changeSubmission(name);
+        enterText(By.xpath("//tr/td[contains(., '" + name + "')]/following-sibling::td[3]/input[@class='quickgrade']"), "50");
+        clickOn(By.id("id_savequickgrades"));
+        getPage("http://bpp-fusion-test.apolloglobal.int/vle/");
+        clickOn(By.linkText("BPP generic"));
+        clickOn(By.linkText("AlexN CoachI"));
+        clickOn(By.linkText("Log out")); // Not sure
+    }
 
-//        if (isAlertPres() == true)
-//            Driver().switchTo().alert().accept();
+    public void unlockSubmission(String name, String course, int step, String secAct, String courseGroup) {
+        getPage("http://bpp-fusion-test.apolloglobal.int/vle/");
+        clickOn(By.linkText("Log in"));
+        clickOn(By.linkText("CAS users"));
+        enterText(By.id("username"), "A.CoachIII");
+        enterText(By.id("password"), "Co121514");
+        clickOn(By.name("submit"));
+        getPage("http://bpp-fusion-test.apolloglobal.int/vle/");
+        clickOn(By.linkText("Ach Ladder (fusion)"));
+        clickOn(By.linkText("All courses"));
+        clickOn(By.linkText(courseGroup));
+        clickOn(By.linkText(course));
+        selectStep(step);
+        clickOn(By.xpath("//div[@class='buttons']//*[contains(text(), '" + "TAKE ASSESSMENT" + "')]"));
+        clickOn(By.linkText("View/grade all submissions"));
+        clickOn(By.xpath("//tr/td[contains(., 'Select " + name + "')]/input[@name='selectedusers']"));
 
-        enterText(By.xpath("//tr/td[contains(., '" + name + "')]/following-sibling::td[3]/input[@class='quickgrade']"), "90");
-//        changeSubmission(name);
+        Select select = new Select(getElement(By.xpath("//tr/td[contains(., '" + name + "')]/following-sibling::td[2]/select")));
+        select.selectByValue("Released");
 
-        sleepFor(30000);
-//        clickOn(By.name("savequickgrades"));
-
-
-
+        withOperation(secAct);
+        clickOn(By.id("id_submit"));
+        if (isAlertPres() == true)
+            Driver().switchTo().alert().accept();
+        getPage("http://bpp-fusion-test.apolloglobal.int/vle/");
+        clickOn(By.linkText("BPP generic"));
+        clickOn(By.linkText("AlexNIII CoachIII"));
+        clickOn(By.linkText("Log out")); // Not sure
+        sleepFor(5000);
     }
 
     public static void selectMarker(String markerName) {
-//        Select select = new Select(getElement(By.xpath("//*[@id='id_operation']")));
         Select select = new Select(getElement(By.xpath("//div[@class='felement fselect']/select[@name='allocatedmarker']")));
-//        Select select = new Select(getElement(By.name("operation")));
         select.selectByVisibleText(markerName);
         clickOn(By.id("id_submitbutton"));
     }
 
     public static void changeSubmission(String name) {
-        Select select = new Select(getElement(By.xpath("//td/div[@class='submissionstatussubmitted']")));
-        select.deselectByValue("Marking completed");
-//        Select select = new Select(getElement(By.id("menuquickgrade_"+ * +"_workflowstate")));
-//        Select select = new Select(getElement(By.xpath("//tr/td[contains(., '" + name + "')]/following-sibling::td[2]/")));
-//        select.selectByValue("released");
+
+        Select select = new Select(getElement(By.xpath("//tr/td[contains(., '" + name + "')]/following-sibling::td[2]/select")));
+        select.selectByValue("readyforreview");
     }
 
     public static void setMarker() {
