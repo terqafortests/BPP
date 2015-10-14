@@ -13,7 +13,7 @@ public class MarkingWorkflow extends MainClass {
 
     public static By operation = By.id("id_operation");
 
-    public void estimeteStudent(String name, String course, int step, String act, String secAct, String courseGroup) {
+    public void estimeteStudent(String name, String course, int step, String act, String secAct, String courseGroup, String activ) {
 
         /**
          * name - student name
@@ -24,9 +24,9 @@ public class MarkingWorkflow extends MainClass {
          * courseGroup - course category
          * */
 
-//        lockSubmission(name, course, step, act, courseGroup);
-//        estimate(name, course, step);
-//        unlockSubmission(name, course, step, secAct,  courseGroup);
+        lockSubmission(name, course, step, act, courseGroup, activ);
+        estimate(name, course, step, activ);
+        unlockSubmission(name, course, step, secAct,  courseGroup, activ);
 
     }
 
