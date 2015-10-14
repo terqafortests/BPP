@@ -24,15 +24,15 @@ public class MarkingWorkflow extends MainClass {
          * courseGroup - course category
          * */
 
-        lockSubmission(name, course, step, act, courseGroup);
-        estimate(name, course, step);
-        unlockSubmission(name, course, step, secAct,  courseGroup);
+//        lockSubmission(name, course, step, act, courseGroup);
+//        estimate(name, course, step);
+//        unlockSubmission(name, course, step, secAct,  courseGroup);
 
     }
 
 //    lock submission and send to marker
 
-    public void lockSubmission(String name, String course, int step, String act, String courseGroup) {
+    public void lockSubmission(String name, String course, int step, String act, String courseGroup, String activ) {
 
         String markerName = "AlexN CoachI";
         getPage("http://bpp-fusion-test.apolloglobal.int/vle/");
@@ -47,6 +47,9 @@ public class MarkingWorkflow extends MainClass {
         clickOn(By.linkText(courseGroup));
         clickOn(By.linkText(course));
         selectStep(step);
+
+        clickOn(By.xpath("//div[@class='activities']//*[contains(text(), '"+ activ +"')]"));
+
         clickOn(By.xpath("//div[@class='buttons']//*[contains(text(), '" + "TAKE ASSESSMENT" + "')]"));
         clickOn(By.linkText("View/grade all submissions"));
         clickOn(By.xpath("//tr/td[contains(., 'Select " + name + "')]/input[@name='selectedusers']"));
@@ -74,7 +77,7 @@ public class MarkingWorkflow extends MainClass {
     }
 
 //    login as marker and estimate
-    public void estimate(String name, String course, int step) {
+    public void estimate(String name, String course, int step, String activ) {
         String user = "A.CoachI";
         String pass = "Co121514";
         getPage("http://bpp-fusion-test.apolloglobal.int/vle/");
@@ -88,6 +91,10 @@ public class MarkingWorkflow extends MainClass {
         clickOn(By.linkText("Ach Ladder (fusion)"));
         clickOn(By.linkText(course));
         selectStep(step);
+
+        clickOn(By.xpath("//div[@class='activities']//*[contains(text(), '"+ activ +"')]"));
+
+        clickOn(By.linkText(activ));
         clickOn(By.xpath("//div[@class='buttons']//*[contains(text(), '" + "TAKE ASSESSMENT" + "')]"));
         clickOn(By.linkText("View/grade all submissions"));
         clickOn(By.xpath("//tr/td[contains(., 'Select " + name + "')]/input[@name='selectedusers']"));
@@ -100,7 +107,7 @@ public class MarkingWorkflow extends MainClass {
         clickOn(By.linkText("Log out")); // Not sure
     }
 
-    public void unlockSubmission(String name, String course, int step, String secAct, String courseGroup) {
+    public void unlockSubmission(String name, String course, int step, String secAct, String courseGroup, String activ) {
         getPage("http://bpp-fusion-test.apolloglobal.int/vle/");
         clickOn(By.linkText("Log in"));
         clickOn(By.linkText("CAS users"));
@@ -113,6 +120,10 @@ public class MarkingWorkflow extends MainClass {
         clickOn(By.linkText(courseGroup));
         clickOn(By.linkText(course));
         selectStep(step);
+
+        clickOn(By.xpath("//div[@class='activities']//*[contains(text(), '"+ activ +"')]"));
+
+        clickOn(By.linkText(activ));
         clickOn(By.xpath("//div[@class='buttons']//*[contains(text(), '" + "TAKE ASSESSMENT" + "')]"));
         clickOn(By.linkText("View/grade all submissions"));
         clickOn(By.xpath("//tr/td[contains(., 'Select " + name + "')]/input[@name='selectedusers']"));
