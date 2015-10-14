@@ -94,7 +94,6 @@ public class MarkingWorkflow extends MainClass {
 
         clickOn(By.xpath("//div[@class='activities']//*[contains(text(), '"+ activ +"')]"));
 
-        clickOn(By.linkText(activ));
         clickOn(By.xpath("//div[@class='buttons']//*[contains(text(), '" + "TAKE ASSESSMENT" + "')]"));
         clickOn(By.linkText("View/grade all submissions"));
         clickOn(By.xpath("//tr/td[contains(., 'Select " + name + "')]/input[@name='selectedusers']"));
@@ -123,7 +122,6 @@ public class MarkingWorkflow extends MainClass {
 
         clickOn(By.xpath("//div[@class='activities']//*[contains(text(), '"+ activ +"')]"));
 
-        clickOn(By.linkText(activ));
         clickOn(By.xpath("//div[@class='buttons']//*[contains(text(), '" + "TAKE ASSESSMENT" + "')]"));
         clickOn(By.linkText("View/grade all submissions"));
         clickOn(By.xpath("//tr/td[contains(., 'Select " + name + "')]/input[@name='selectedusers']"));
