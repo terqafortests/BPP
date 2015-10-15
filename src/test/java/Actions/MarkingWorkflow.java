@@ -12,27 +12,27 @@ import utils.MainClass;
 public class MarkingWorkflow extends MainClass {
 
     public static By operation = By.id("id_operation");
+    /**
+     * name - student name
+     * course - needed course
+     * step - number of step
+     * courseGroup - course category
+     * */
+    public void estimeteStudent(String name, String course, int step, String courseGroup, String activ) {
 
-    public void estimeteStudent(String name, String course, int step, String act, String secAct, String courseGroup, String activ) {
-
-        /**
-         * name - student name
-         * course - needed course
-         * step - number of step
-         * lock - action (lock submission)
-         * unlock - action (unlock submission)
-         * courseGroup - course category
-         * */
-
-        lockSubmission(name, course, step, act, courseGroup, activ);
+        lockSubmission(name, course, step,  courseGroup, activ);
+        sleepFor(15000);
         estimate(name, course, step, activ);
-        unlockSubmission(name, course, step, secAct,  courseGroup, activ);
+        sleepFor(15000);
+        unlockSubmission(name, course, step, courseGroup, activ);
 
     }
 
+
+
 //    lock submission and send to marker
 
-    public void lockSubmission(String name, String course, int step, String act, String courseGroup, String activ) {
+    public void lockSubmission(String name, String course, int step,  String courseGroup, String activ) {
 
         String markerName = "AlexN CoachI";
         getPage("http://bpp-fusion-test.apolloglobal.int/vle/");
@@ -53,7 +53,7 @@ public class MarkingWorkflow extends MainClass {
         clickOn(By.xpath("//div[@class='buttons']//*[contains(text(), '" + "TAKE ASSESSMENT" + "')]"));
         clickOn(By.linkText("View/grade all submissions"));
         clickOn(By.xpath("//tr/td[contains(., 'Select " + name + "')]/input[@name='selectedusers']"));
-        withOperation(act);
+        withOperation("Lock submissions");
         clickOn(By.id("id_submit"));
 
         if (isAlertPres() == true)
@@ -76,7 +76,7 @@ public class MarkingWorkflow extends MainClass {
         sleepFor(5000);
     }
 
-//    login as marker and estimate
+    //    login as marker and estimate
     public void estimate(String name, String course, int step, String activ) {
         String user = "A.CoachI";
         String pass = "Co121514";
@@ -97,7 +97,7 @@ public class MarkingWorkflow extends MainClass {
         clickOn(By.xpath("//div[@class='buttons']//*[contains(text(), '" + "TAKE ASSESSMENT" + "')]"));
         clickOn(By.linkText("View/grade all submissions"));
         clickOn(By.xpath("//tr/td[contains(., 'Select " + name + "')]/input[@name='selectedusers']"));
-        changeSubmission(name);
+        changeSubmission(name, "readyforreview");
         enterText(By.xpath("//tr/td[contains(., '" + name + "')]/following-sibling::td[3]/input[@class='quickgrade']"), "50");
         clickOn(By.id("id_savequickgrades"));
         getPage("http://bpp-fusion-test.apolloglobal.int/vle/");
@@ -106,7 +106,7 @@ public class MarkingWorkflow extends MainClass {
         clickOn(By.linkText("Log out")); // Not sure
     }
 
-    public void unlockSubmission(String name, String course, int step, String secAct, String courseGroup, String activ) {
+    public void unlockSubmission(String name, String course, int step, String courseGroup, String activ) {
         getPage("http://bpp-fusion-test.apolloglobal.int/vle/");
         clickOn(By.linkText("Log in"));
         clickOn(By.linkText("CAS users"));
@@ -126,10 +126,12 @@ public class MarkingWorkflow extends MainClass {
         clickOn(By.linkText("View/grade all submissions"));
         clickOn(By.xpath("//tr/td[contains(., 'Select " + name + "')]/input[@name='selectedusers']"));
 
-        Select select = new Select(getElement(By.xpath("//tr/td[contains(., '" + name + "')]/following-sibling::td[2]/select")));
-        select.selectByValue("Released");
+        changeSubmission(name, "released");
 
-        withOperation(secAct);
+//        Select select = new Select(getElement(By.xpath("//tr/td[contains(., '" + name + "')]/following-sibling::td[2]/select")));
+//        select.selectByValue("Released");
+
+        withOperation("Unlock submissions");
         clickOn(By.id("id_submit"));
         if (isAlertPres() == true)
             Driver().switchTo().alert().accept();
@@ -146,10 +148,10 @@ public class MarkingWorkflow extends MainClass {
         clickOn(By.id("id_submitbutton"));
     }
 
-    public static void changeSubmission(String name) {
+    public static void changeSubmission(String name, String status) {
 
         Select select = new Select(getElement(By.xpath("//tr/td[contains(., '" + name + "')]/following-sibling::td[2]/select")));
-        select.selectByValue("readyforreview");
+        select.selectByValue(status);
     }
 
     public static void setMarker() {
