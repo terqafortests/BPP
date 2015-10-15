@@ -8,7 +8,7 @@ import utils.MainClass;
 
 public class MyProfilePage extends MainClass {
 	
-	public static By myProfTable = By.id("generalSettingsForm");
+	
 	
 	public static ArrayList<String> getTableData(By tableID) {
 		ArrayList<String> tableData = new ArrayList<String>();

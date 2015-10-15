@@ -8,7 +8,6 @@ public class SelectPaperPage extends MainClass {
 	
 	public static By open = By.id("open_button");
 	public static By logout = By.id("logout_button");
-	public static String iFrame = "iframe-layout-instance";
 	public static By messageArea = By.cssSelector("#myModal p");
 	
 	public static void selectCourse(String courseName) {
