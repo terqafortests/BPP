@@ -1,6 +1,7 @@
 package testNGClasses;
 
 import org.testng.annotations.Test;
+import pages.HeaderPage;
 import pages.LoginPage;
 import pages.MyCalendarPage;
 import pages.SelectPaperPage;
@@ -23,11 +24,11 @@ public class PORT3837ElPresTest extends MainClass {
 	@BeforeTest
 	public void preCon() {
 		LoginPage.login("a.AKSTpLastDQ", "Ak081915");
-		switchToFrame(SelectPaperPage.iFrame);
+		switchToFrame(HeaderPage.iFrame);
 		SelectPaperPage.selectCourse("Regression Test");
 		clickOn(SelectPaperPage.open);
 		getPage("http://bpp-fusion-test.apolloglobal.int/group/student/my-calendar");
-		switchToFrame(SelectPaperPage.iFrame);		
+		switchToFrame(HeaderPage.iFrame);		
 	}
 
 	@Test(dataProvider = "Check elements")

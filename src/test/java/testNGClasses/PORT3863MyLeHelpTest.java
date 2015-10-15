@@ -2,6 +2,8 @@ package testNGClasses;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import pages.HeaderPage;
 import pages.LoginPage;
 import pages.MyLearningPage;
 import pages.SelectPaperPage;
@@ -11,7 +13,7 @@ public class PORT3863MyLeHelpTest extends MainClass {
 	@Test
 	public void port3863MyLeHelpTest() {
 		LoginPage.login("BP5003200", "Gr091714");
-		switchToFrame(SelectPaperPage.iFrame);
+		switchToFrame(HeaderPage.iFrame);
 		SelectPaperPage.selectCourse("Roma Test Course 1");
 		clickOn(SelectPaperPage.open);
 		clickOn(MyLearningPage.helpLink);
