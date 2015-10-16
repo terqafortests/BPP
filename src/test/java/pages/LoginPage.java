@@ -19,6 +19,7 @@ public class LoginPage extends MainClass {
 
 
     public static void login(String user, String pass) {
+    	Driver().manage().deleteAllCookies();
         getPage("https://bpp-test.apolloglobal.int/ncas/login?service=https://bpp-fusion-test.apolloglobal.int/delegate/fusion-loginconfirm");
         enterText(username, user);
         enterText(password, pass);
