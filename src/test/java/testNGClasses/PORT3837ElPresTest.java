@@ -1,6 +1,9 @@
 package testNGClasses;
 
 import org.testng.annotations.Test;
+
+import com.relevantcodes.extentreports.LogStatus;
+
 import pages.HeaderPage;
 import pages.LoginPage;
 import pages.MyCalendarPage;
@@ -26,6 +29,7 @@ public class PORT3837ElPresTest extends MainClass {
 		switchToFrame(HeaderPage.iFrame);
 		SelectPaperPage.selectCourse("Regression Test");
 		clickOn(SelectPaperPage.open);
+		logger.log(LogStatus.PASS, "Clicked on Open button");
 		getPage("http://bpp-fusion-test.apolloglobal.int/group/student/my-calendar");
 		switchToFrame(HeaderPage.iFrame);		
 	}
