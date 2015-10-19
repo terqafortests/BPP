@@ -7,7 +7,6 @@ import pages.MyCalendarPage;
 import pages.SelectPaperPage;
 import utils.MainClass;
 import org.openqa.selenium.By;
-import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 
@@ -33,6 +32,6 @@ public class PORT3837ElPresTest extends MainClass {
 
 	@Test(dataProvider = "Check elements")
 	public void port3837PrefTest(By object, String att, String text ) {
-		Assert.assertEquals(getElementAtt(object, att), text);		
+		assertEquals(getElementAtt(object, att), text);
 	}
 }

@@ -3,9 +3,7 @@ package testNGClasses;
 import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.testng.Assert;
 import org.testng.annotations.Test;
-
 import pages.HeaderPage;
 import pages.LoginPage;
 import pages.MyLearningPage;
@@ -24,6 +22,6 @@ public class PORT3838Test extends MainClass {
 		sleepFor(3000);
 		topics = getElements(By.xpath(
 				"//div[@class='wa_courseformat']/div[@class='topics']/div[contains(@class, 'topic') and contains(@class, 'selected')]"));
-		Assert.assertEquals(topics.size(), 4);
+		assertEquals(topics.size(), 4);
 	}
 }
