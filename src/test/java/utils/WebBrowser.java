@@ -6,19 +6,21 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.opera.OperaDriver;
 import org.openqa.selenium.safari.SafariDriver;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
+import com.relevantcodes.extentreports.LogStatus;
 
-public class WebBrowser {
+public class WebBrowser extends ReporterManager {
 
 	// ThreadLocal WebDriver variable for executing parallel tests
 	private static ThreadLocal<WebDriver> threadLocalDriver = new ThreadLocal<WebDriver>();
 
 	// NOT STATIC WebDriver type variable
 	private WebDriver driver = threadLocalDriver.get();
-
+		
 	// Creation of WebDriver method with opportunity to choose browser in .xml
 	// file
 	@Parameters("browser")
@@ -27,14 +29,18 @@ public class WebBrowser {
 
 		if (browser.equalsIgnoreCase("Firefox")) {
 			driver = new FirefoxDriver();
+			System.out.println("Firefox opened");
+			logger.log(LogStatus.INFO, "Firefox has started");
 		} else if (browser.equalsIgnoreCase("Chrome")) {
+			System.setProperty("webdriver.chrome.driver",
+					"C:\\Users\\sshept4teco\\workspace\\BPP\\src\\test\\resources\\chromedriver.exe");
 			driver = new ChromeDriver();
+			logger.log(LogStatus.INFO, "Chrome has started");
 		} else if (browser.equalsIgnoreCase("Opera")) {
 			driver = new OperaDriver();
 		} else if (browser.equalsIgnoreCase("Safari")) {
 			driver = new SafariDriver();
 		}
-
 		threadLocalDriver.set(driver);
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
@@ -53,5 +59,13 @@ public class WebBrowser {
 			driver.quit();
 			threadLocalDriver.remove();
 		}
+		System.out.println("Browser closed");
+		logger.log(LogStatus.INFO, "Browser closed");
+		reporter.endTest(logger);
+	}
+	
+	@AfterSuite
+	public void flush() {
+		reporter.flush();
 	}
 }
