@@ -4,6 +4,8 @@ import org.openqa.selenium.*;
 import utils.MainClass;
 import org.openqa.selenium.support.ui.Select;
 
+import com.relevantcodes.extentreports.LogStatus;
+
 /**
  * Created by roma on 10/8/15.
  */
@@ -19,14 +21,17 @@ public class MyLearningPage extends MainClass {
     public static void changeCourse(String name) {
         Select sel = new Select(getElement(dropDowm));
         sel.selectByVisibleText(name);
+        logger.log(LogStatus.PASS, "Changed course to: " + name);
 
     }
 
     public static void selectStep(int num) {
      clickOn(By.xpath("//div[@class='step_button']//*[contains(text(), 'Step " + num + "')]"));
+     logger.log(LogStatus.PASS, "Selected step: " + num);
     }
 
     public static void selectTopic(int topNum) {
         clickOn(By.xpath("//div[@class='topics']//*[contains(text(), '" + topNum + "')]"));
+        logger.log(LogStatus.PASS, "Selected topic: " + topNum);
     }
 }

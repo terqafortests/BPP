@@ -1,26 +1,22 @@
 package pages;
 
-import java.util.ArrayList;
-import java.util.List;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import utils.MainClass;
 
 public class MyProfilePage extends MainClass {
-	
-	
-	
-	public static ArrayList<String> getTableData(By tableID) {
-		ArrayList<String> tableData = new ArrayList<String>();
-		   WebElement simpleTable = getElement(tableID);		   
-		   List<WebElement> rows = simpleTable.findElements(By.tagName("tr"));
-		   for (WebElement row : rows) {
-		      List<WebElement> cols = row.findElements(By.tagName("td"));
-		      for (WebElement col : cols) {
-		         tableData.add(col.getText() + "\t");
-		      }
-		   }
-		   return tableData;
-		}
-
+		
+	public static By name = By.xpath("//*[@id='generalSettingsForm']//th[text()='Name']");
+	public static By username = By.xpath("//*[@id='generalSettingsForm']//th[text()='Username']");
+	public static By password = By.xpath("//*[@id='generalSettingsForm']//th[text()='Password']");
+	public static By bppCurrenntID = By.xpath("//*[@id='generalSettingsForm']//th[text()='BPP Student ID']");
+	public static By primaryEmail = By.xpath("//*[@id='generalSettingsForm']//th[text()='Primary Email']");
+	public static By primaryTelephone = By.xpath("//*[@id='generalSettingsForm']//th[text()='Primary Telephone']");
+	public static By primaryAdress = By.xpath("//*[@id='generalSettingsForm']//th[text()='Primary Address']");
+	public static By addressLine1 = By.xpath("//*[@id='generalSettingsForm']//th[text()='Address Line1']");
+	public static By addressLine2 = By.xpath("//*[@id='generalSettingsForm']//th[text()='Address Line2']");
+	public static By addressLine3 = By.xpath("//*[@id='generalSettingsForm']//th[text()='Address Line3']");
+	public static By city = By.xpath("//*[@id='generalSettingsForm']//th[text()='City']");
+	public static By state = By.xpath("//*[@id='generalSettingsForm']//th[text()='State']");
+	public static By country = By.xpath("//*[@id='generalSettingsForm']//th[text()='Country']");
+	public static By postalCode = By.xpath("//*[@id='generalSettingsForm']//th[text()='Postal Code']");
 }

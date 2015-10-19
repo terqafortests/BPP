@@ -1,6 +1,9 @@
 package pages;
 
 import org.openqa.selenium.By;
+
+import com.relevantcodes.extentreports.LogStatus;
+
 import utils.MainClass;
 
 /**
@@ -19,11 +22,12 @@ public class LoginPage extends MainClass {
 
 
     public static void login(String user, String pass) {
-    	Driver().manage().deleteAllCookies();
         getPage("https://bpp-test.apolloglobal.int/ncas/login?service=https://bpp-fusion-test.apolloglobal.int/delegate/fusion-loginconfirm");
         enterText(username, user);
         enterText(password, pass);
         clickOn(submit);
+        logger.log(LogStatus.PASS, "Clicked on Login button");
+        logger.log(LogStatus.PASS, "Logged in with: " + user + "/" + pass);
     }
 
 }
