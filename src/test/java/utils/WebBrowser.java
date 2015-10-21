@@ -11,22 +11,29 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
+
+import com.relevantcodes.extentreports.ExtentReports;
+import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
 
-public class WebBrowser extends ReporterManager {
+public class WebBrowser extends ReportManager {
 
 	// ThreadLocal WebDriver variable for executing parallel tests
 	private static ThreadLocal<WebDriver> threadLocalDriver = new ThreadLocal<WebDriver>();
 
 	// NOT STATIC WebDriver type variable
 	private WebDriver driver = threadLocalDriver.get();
-		
+
+	private ExtentReports extent = ReportManager.getInstance();
+
+	public static ExtentTest logger;
+
 	// Creation of WebDriver method with opportunity to choose browser in .xml
 	// file
 	@Parameters("browser")
 	@BeforeTest
 	public void initWebBrowser(@Optional(value = "Firefox") String browser) {
-
+		logger = extent.startTest(this.getClass().getSimpleName());
 		if (browser.equalsIgnoreCase("Firefox")) {
 			driver = new FirefoxDriver();
 			System.out.println("Firefox opened");
@@ -61,11 +68,11 @@ public class WebBrowser extends ReporterManager {
 		}
 		System.out.println("Browser closed");
 		logger.log(LogStatus.INFO, "Browser closed");
-		reporter.endTest(logger);
+		extent.endTest(logger);
 	}
-	
+
 	@AfterSuite
 	public void flush() {
-		reporter.flush();
+		extent.flush();
 	}
 }
