@@ -65,10 +65,10 @@ public class WebBrowser extends ReportManager {
 		if (driver != null) {
 			driver.quit();
 			threadLocalDriver.remove();
-		}
-		System.out.println("Browser closed");
-		logger.log(LogStatus.INFO, "Browser closed");
-		extent.endTest(logger);
+			System.out.println("Browser closed");
+			logger.log(LogStatus.INFO, "Browser closed");
+			extent.endTest(logger);
+		}		
 	}
 
 	@AfterSuite
