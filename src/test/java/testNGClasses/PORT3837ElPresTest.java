@@ -1,9 +1,7 @@
 package testNGClasses;
 
 import org.testng.annotations.Test;
-
 import com.relevantcodes.extentreports.LogStatus;
-
 import pages.HeaderPage;
 import pages.LoginPage;
 import pages.MyCalendarPage;
