@@ -2,26 +2,33 @@ package utils;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.NoSuchElementException;
+import java.util.Random;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-
 import com.relevantcodes.extentreports.LogStatus;
 
 public class MainClass extends WebBrowser {
 
 	public static void getPage(String address) {
 		Driver().get(address);
-		logger.log(LogStatus.PASS, "Redirected to page: " + address);
+		String title = Driver().getTitle();
+		if (title.contains("is not available") || title.contains("Problem loading page")) {
+			logger.log(LogStatus.FATAL, title + logger.addScreenCapture(Screenshot.take("FATAL_Cannot_load_page")));
+		} else {
+			logger.log(LogStatus.PASS, "Redirected to: " + address);
+		}
 	}
 
 	public static String getCurrUrl() {
 		String currAddress = Driver().getCurrentUrl();
-		logger.log(LogStatus.INFO, "Current URL is: " + currAddress);
+		String title = Driver().getTitle();
+		if (title.contains("is not available") || title.contains("Problem loading page")) {
+			logger.log(LogStatus.FATAL, title + logger.addScreenCapture(Screenshot.take("FATAL_Cannot_load_page")));
+		}
 		return currAddress;
 	}
 
@@ -30,9 +37,10 @@ public class MainClass extends WebBrowser {
 		WebElement element = null;
 		try {
 			element = wait.until(ExpectedConditions.visibilityOf(Driver().findElement(by)));
-		} catch (NoSuchElementException e) {
-			System.out.println("Cannot find Element on the page" + e.getStackTrace());
-			logger.log(LogStatus.FAIL, "Cannot find element on the page. Stacktrace: " + e.getStackTrace());
+		} catch (Exception e) {
+			System.out.println("Cannot find Element on the page" + e.getMessage());
+			logger.log(LogStatus.FAIL, "Cannot find element on the page. Stacktrace: " + e.getStackTrace() + logger
+					.addScreenCapture(Screenshot.take("FAIL_Cannot_find_element_" + new Random().nextInt(1000))));
 		}
 		return element;
 	}
@@ -43,7 +51,9 @@ public class MainClass extends WebBrowser {
 			element.click();
 		} else {
 			logger.log(LogStatus.FAIL,
-					"Cannot click on element: element is not visible on page or it's dimensions are less then 0");
+					"Cannot click on element: element is not visible on page or it's dimensions are less then 0"
+							+ logger.addScreenCapture(
+									Screenshot.take("FAIL_Cannot_click_on_element" + +new Random().nextInt(1000))));
 		}
 	}
 
@@ -90,7 +100,7 @@ public class MainClass extends WebBrowser {
 
 	public static void closeTab(int i) {
 		switchToTab(i).close();
-		logger.log(LogStatus.FAIL, "Tab closed");
+		logger.log(LogStatus.PASS, "Tab closed");
 	}
 
 	public static String getElementAtt(By by, String attName) {
@@ -109,15 +119,25 @@ public class MainClass extends WebBrowser {
 	public static List<WebElement> getElements(By by) {
 		return Driver().findElements(by);
 	}
-	
+
 	public static void assertEquals(Object actual, Object expected) {
 		logger.log(LogStatus.INFO, "Trying to compare object with " + expected);
-		if(actual.equals(expected)){
+		if (actual.equals(expected)) {
 			logger.log(LogStatus.PASS, "Objects match");
 		} else {
-			logger.log(LogStatus.FAIL, "Expected: '" + expected + "' Actual: '" + actual + "'");
+			logger.log(LogStatus.FAIL, "Expected: '" + expected + "' Actual: '" + actual + "'"
+					+ logger.addScreenCapture(Screenshot.take("FAILED_" + +new Random().nextInt(1000))));
 			Assert.assertEquals(actual, expected);
 		}
 	}
-	
+
+	public static void assertTrue(boolean actual) {
+		if (actual) {
+			logger.log(LogStatus.PASS, "Objects match");
+		} else {
+			logger.log(LogStatus.FAIL, "Expected: true, but false");
+			Assert.assertTrue(actual);
+		}
+	}
+
 }

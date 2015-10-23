@@ -8,7 +8,7 @@ public class ReportManager {
 	
 	 public static ExtentReports getInstance() {
 	        if (extent == null) {
-	            extent = new ExtentReports("C:\\Users\\4teco\\workspace\\BPP\\Report.html", true);
+	            extent = new ExtentReports("./Report.html", true);
 	            
 	            // optional
 	            extent.config()

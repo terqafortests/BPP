@@ -4,6 +4,7 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.opera.OperaDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.testng.annotations.AfterSuite;
@@ -36,17 +37,20 @@ public class WebBrowser extends ReportManager {
 		logger = extent.startTest(this.getClass().getSimpleName());
 		if (browser.equalsIgnoreCase("Firefox")) {
 			driver = new FirefoxDriver();
-			System.out.println("Firefox opened");
+			System.out.println("Firefox has started");
 			logger.log(LogStatus.INFO, "Firefox has started");
 		} else if (browser.equalsIgnoreCase("Chrome")) {
-			System.setProperty("webdriver.chrome.driver",
-					"C:\\Users\\sshept4teco\\workspace\\BPP\\src\\test\\resources\\chromedriver.exe");
+			System.setProperty("webdriver.chrome.driver", "./src/test/resources/chromedriver.exe");
 			driver = new ChromeDriver();
+			System.out.println("Chrome has started");
 			logger.log(LogStatus.INFO, "Chrome has started");
 		} else if (browser.equalsIgnoreCase("Opera")) {
 			driver = new OperaDriver();
 		} else if (browser.equalsIgnoreCase("Safari")) {
 			driver = new SafariDriver();
+		} else if (browser.equalsIgnoreCase("IE")) {
+			System.setProperty("webdriver.ie.driver", "./src/test/resources/IEDriver.exe");
+			driver = new InternetExplorerDriver();
 		}
 		threadLocalDriver.set(driver);
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
@@ -68,7 +72,7 @@ public class WebBrowser extends ReportManager {
 			System.out.println("Browser closed");
 			logger.log(LogStatus.INFO, "Browser closed");
 			extent.endTest(logger);
-		}		
+		}
 	}
 
 	@AfterSuite
