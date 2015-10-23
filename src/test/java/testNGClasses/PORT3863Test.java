@@ -1,7 +1,6 @@
 package testNGClasses;
 
 import org.openqa.selenium.By;
-import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -37,7 +36,7 @@ public class PORT3863Test extends MainClass {
 		switchToFrame(HeaderPage.iFrame);
 		clickOn(obj);
 		switchToTab(1);
-		Assert.assertEquals(getCurrUrl(), link);
+		assertEquals(getCurrUrl(), link);
 		closeTab(1);
 		switchToTab(0);
 	}

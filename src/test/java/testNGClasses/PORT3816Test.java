@@ -15,10 +15,10 @@ public class PORT3816Test extends MainClass {
 
 	@DataProvider(name = "Check elements")
 	public static Object[][] elements() {
-		return new Object[][] {{ MyProfilePage.addressLine1, "Address Line1qwerty" },
+		return new Object[][] {{ MyProfilePage.addressLine1, "Address Line1" },
 				{ MyProfilePage.addressLine2, "Address Line2" }, { MyProfilePage.addressLine3, "Address Line3" },
 				{ MyProfilePage.bppCurrenntID, "BPP Student ID" }, { MyProfilePage.city, "City" },
-				{ MyProfilePage.country, "Country123" }, { MyProfilePage.name, "Name" },
+				{ MyProfilePage.country, "Country" }, { MyProfilePage.name, "Name" },
 				{ MyProfilePage.password, "Password" }, { MyProfilePage.postalCode, "Postal Code" },
 				{ MyProfilePage.primaryAdress, "Primary Address" }, { MyProfilePage.primaryEmail, "Primary Email" },
 				{ MyProfilePage.primaryTelephone, "Primary Telephone" }, { MyProfilePage.state, "State" },
