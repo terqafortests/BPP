@@ -8,10 +8,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
+import org.testng.asserts.SoftAssert;
+
 import com.relevantcodes.extentreports.LogStatus;
 
 public class MainClass extends WebBrowser {
+	
+	private static SoftAssert softAssert = new SoftAssert();
 
 	public static void getPage(String address) {
 		Driver().get(address);
@@ -53,7 +56,7 @@ public class MainClass extends WebBrowser {
 			logger.log(LogStatus.FAIL,
 					"Cannot click on element: element is not visible on page or it's dimensions are less then 0"
 							+ logger.addScreenCapture(
-									Screenshot.take("FAIL_Cannot_click_on_element" + +new Random().nextInt(1000))));
+									Screenshot.take("FAIL_Cannot_click_on_element" + new Random().nextInt(1000))));
 		}
 	}
 
@@ -120,23 +123,25 @@ public class MainClass extends WebBrowser {
 		return Driver().findElements(by);
 	}
 
-	public static void assertEquals(Object actual, Object expected) {
-		logger.log(LogStatus.INFO, "Trying to compare object with " + expected);
+	public static void assertEquals(Object actual, Object expected, String beforeMess) {
+		logger.log(LogStatus.INFO, beforeMess);
 		if (actual.equals(expected)) {
 			logger.log(LogStatus.PASS, "Objects match");
 		} else {
 			logger.log(LogStatus.FAIL, "Expected: '" + expected + "' Actual: '" + actual + "'"
-					+ logger.addScreenCapture(Screenshot.take("FAILED_" + +new Random().nextInt(1000))));
-			Assert.assertEquals(actual, expected);
+					+ logger.addScreenCapture(Screenshot.take("FAILED_" + new Random().nextInt(1000))));
+			softAssert.assertEquals(actual, expected);
 		}
 	}
 
-	public static void assertTrue(boolean actual) {
+	public static void assertTrue(boolean actual, String beforeMess) {
+		logger.log(LogStatus.INFO, beforeMess);
 		if (actual) {
 			logger.log(LogStatus.PASS, "Objects match");
 		} else {
-			logger.log(LogStatus.FAIL, "Expected: true, but false");
-			Assert.assertTrue(actual);
+			logger.log(LogStatus.FAIL, "Expected: true, but false"
+					+ logger.addScreenCapture(Screenshot.take("FAILED_" + new Random().nextInt(1000))));
+			softAssert.assertTrue(actual);
 		}
 	}
 

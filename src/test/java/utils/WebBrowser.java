@@ -1,18 +1,22 @@
 package utils;
 
+import java.io.IOException;
+import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxProfile;
+import org.openqa.selenium.firefox.internal.ProfilesIni;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.opera.OperaDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.safari.SafariDriver;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
-
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
@@ -34,7 +38,7 @@ public class WebBrowser extends ReportManager {
 	@Parameters("browser")
 	@BeforeTest
 	public void initWebBrowser(@Optional(value = "Firefox") String browser) {
-		logger = extent.startTest(this.getClass().getSimpleName());
+		logger = extent.startTest(this.getClass().getSimpleName()).assignCategory("Regression " + browser);
 		if (browser.equalsIgnoreCase("Firefox")) {
 			driver = new FirefoxDriver();
 			System.out.println("Firefox has started");
@@ -51,6 +55,23 @@ public class WebBrowser extends ReportManager {
 		} else if (browser.equalsIgnoreCase("IE")) {
 			System.setProperty("webdriver.ie.driver", "./src/test/resources/IEDriver.exe");
 			driver = new InternetExplorerDriver();
+		} else if (browser.equalsIgnoreCase("FirefoxDisabledCookies")) {
+			FirefoxProfile profile = new ProfilesIni().getProfile("default");
+			profile.setPreference("network.cookie.cookieBehavior", 2);
+			driver = new FirefoxDriver(profile);
+		} else if (browser.equalsIgnoreCase("ChromeDisabledCookies")) {
+			DesiredCapabilities capabilities = DesiredCapabilities.chrome();
+			capabilities.setCapability("chrome.switches", Arrays.asList("--disable-local-storage"));
+			driver = new ChromeDriver(capabilities);
+		} else if (browser.equalsIgnoreCase("IEDisabledCookies")) {
+			String command = "REG ADD \"HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings\\Zones\\      \" /v 1A10 /t REG_DWORD /d 0X3 /f";
+			try {
+				Runtime.getRuntime().exec(command);
+				System.setProperty("webdriver.ie.driver", "./src/test/resources/IEDriver.exe");
+				driver = new InternetExplorerDriver();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 		threadLocalDriver.set(driver);
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
