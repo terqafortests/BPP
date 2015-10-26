@@ -4,6 +4,9 @@ import org.openqa.selenium.By;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+
+import com.relevantcodes.extentreports.LogStatus;
+
 import pages.HeaderPage;
 import pages.LoginPage;
 import pages.MyCalendarPage;
@@ -28,6 +31,7 @@ public class PORT3863Test extends MainClass {
 		switchToFrame(HeaderPage.iFrame);
 		SelectPaperPage.selectCourse("Regression Test");
 		clickOn(SelectPaperPage.open);
+		logger.log(LogStatus.PASS, "Clickod on login button");
 	}
 
 	@Test(dataProvider = "Links")
@@ -36,7 +40,7 @@ public class PORT3863Test extends MainClass {
 		switchToFrame(HeaderPage.iFrame);
 		clickOn(obj);
 		switchToTab(1);
-		assertEquals(getCurrUrl(), link);
+		assertEquals(getCurrUrl(), link, "Verifying if opened link matches: " + link);
 		closeTab(1);
 		switchToTab(0);
 	}

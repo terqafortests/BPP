@@ -23,6 +23,6 @@ public class PORT3916Test extends MainClass {
 	@Test
 	public void port3916Test() {
 		MyLearningPage.changeCourse("AZ Course 01");
-		assertEquals(getElementText(MyLearningPage.courseName), "AZ Course 01");
+		assertEquals(getElementText(MyLearningPage.courseName), "AZ Course 01", "Verifying if changed step equals: AZ Course 01");
 	}
 }

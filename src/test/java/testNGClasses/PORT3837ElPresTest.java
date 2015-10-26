@@ -34,6 +34,6 @@ public class PORT3837ElPresTest extends MainClass {
 
 	@Test(dataProvider = "Check elements")
 	public void port3837PrefTest(By object, String att, String text ) {
-		assertEquals(getElementAtt(object, att), text);
+		assertEquals(getElementAtt(object, att), text, "Veryfiying if " + text + "mathces text in button...");
 	}
 }

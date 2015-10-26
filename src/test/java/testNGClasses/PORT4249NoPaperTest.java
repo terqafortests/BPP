@@ -18,6 +18,7 @@ public class PORT4249NoPaperTest extends MainClass {
 	@Test
 	public void port4249NoPaperTest() {
 		assertEquals(getElementText(SelectPaperPage.messageArea),
-				"Sorry, there are no courses you can login to right now, this may be because the course you’ve enrolled on has either not started or expired.");
+				"Sorry, there are no courses you can login to right now, this may be because the course you’ve enrolled on has either not started or expired.",
+				"Verifying if actual message equals Sorry, there are no courses you can login to right now, this may be because the course you’ve enrolled on has either not started or expired.");
 	}
 }

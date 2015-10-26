@@ -25,6 +25,6 @@ public class PORT4326LogoTest extends MainClass {
 
 	@Test(dataProvider = "Check elements")
 	public void port4326LogoTest(By obj, String att, String expected) {
-		assertEquals(getElementAtt(obj, att), expected);
+		assertEquals(getElementAtt(obj, att), expected, "Veryfying if there is right logo on the page");
 	}
 }

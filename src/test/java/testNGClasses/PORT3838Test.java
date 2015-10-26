@@ -34,6 +34,6 @@ public class PORT3838Test extends MainClass {
 		sleepFor(3000);
 		topics = getElements(By.xpath(
 				"//div[@class='wa_courseformat']/div[@class='topics']/div[contains(@class, 'topic') and contains(@class, 'selected')]"));
-		assertEquals(topics.size(), stepCount);
+		assertEquals(topics.size(), stepCount, "Verifying if number of covered topics equal " + stepCount);
 	}
 }

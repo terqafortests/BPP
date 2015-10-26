@@ -37,6 +37,6 @@ public class PORT3816Test extends MainClass {
 
 	@Test(dataProvider = "Check elements")
 	public void port3816Test(By obj, String text) {
-		assertEquals(getElementText(obj), text);	
+		assertEquals(getElementText(obj), text, "Veryfiying if " + text + "mathces text in button...");	
 	}
 }
