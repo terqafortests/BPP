@@ -18,9 +18,9 @@ public class LoginPage extends MainClass {
     public static By message = By.xpath("//div[@id='main-content']//h1");
     public static By bppEduLogo = By.xpath("//div[@class='logo']//a[1]/img");
     public static By bppUniLogo = By.xpath("//div[@class='logo']//a[2]/img");
+    public static By signInMessage = By.xpath("//div[@id='main-content']//h2");
+    public static By errSection = By.cssSelector("#status");
     
-
-
     public static void login(String user, String pass) {
         getPage("https://bpp-test.apolloglobal.int/ncas/login?service=https://bpp-fusion-test.apolloglobal.int/delegate/fusion-loginconfirm");
         enterText(username, user);

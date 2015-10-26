@@ -19,4 +19,5 @@ public class MyProfilePage extends MainClass {
 	public static By state = By.xpath("//*[@id='generalSettingsForm']//th[text()='State']");
 	public static By country = By.xpath("//*[@id='generalSettingsForm']//th[text()='Country']");
 	public static By postalCode = By.xpath("//*[@id='generalSettingsForm']//th[text()='Postal Code']");
+	public static By alertMessage = By.cssSelector(".alert-info");
 }
