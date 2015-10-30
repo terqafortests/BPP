@@ -1,9 +1,7 @@
 package pages;
 
 import org.openqa.selenium.By;
-
 import com.relevantcodes.extentreports.LogStatus;
-
 import utils.MainClass;
 
 /**
