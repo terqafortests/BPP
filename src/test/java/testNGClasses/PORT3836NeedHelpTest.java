@@ -14,7 +14,7 @@ public class PORT3836NeedHelpTest extends MainClass {
 
 	@DataProvider(name = "Links")
 	public static Object[][] elements() {
-		return new Object[][] { { "http://bpp-fusion-test.apolloglobal.int/group/student/my-learning", "Privacy policy", "www.bpp.com/privacy" },
+		return new Object[][] { { "http://bpp-fusion-test.apolloglobal.int/group/student/my-learning", "Privacy policy", "http://www.bpp.com/privacy" },
 				{ "http://bpp-fusion-test.apolloglobal.int/group/student/my-calendar", "Accessibility", "http://www.bpp.com/help/l/help" },
 				{ "http://bpp-fusion-test.apolloglobal.int/group/student/my-groups", "Terms & conditions", "http://www.bpp.com/terms" } };
 	}

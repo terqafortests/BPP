@@ -14,7 +14,7 @@ public class PORT3836NeedHelpPapersTest extends MainClass {
 
 	@DataProvider(name = "Links")
 	public static Object[][] elements() {
-		return new Object[][] { { "Privacy policy", "www.bpp.com/privacy" },
+		return new Object[][] { { "Privacy policy", "http://www.bpp.com/privacy" },
 				{ "Accessibility", "http://www.bpp.com/help/l/help" },
 				{ "Terms & conditions", "http://www.bpp.com/terms" } };
 	}
