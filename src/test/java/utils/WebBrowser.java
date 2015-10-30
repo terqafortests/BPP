@@ -64,7 +64,7 @@ public class WebBrowser extends ReportManager {
 			capabilities.setCapability("chrome.switches", Arrays.asList("--disable-local-storage"));
 			driver = new ChromeDriver(capabilities);
 		} else if (browser.equalsIgnoreCase("IEDisabledCookies")) {
-			String command = "REG ADD \"HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings\\Zones\\      \" /v 1A10 /t REG_DWORD /d 0X3 /f";
+			String command = "REG ADD \"HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings\\Zones\\      \" /v 1A10 /t REG_DWORD /d 0X1 /f";
 			try {
 				Runtime.getRuntime().exec(command);
 				System.setProperty("webdriver.ie.driver", "./src/test/resources/IEDriver.exe");
