@@ -17,8 +17,6 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
-import com.relevantcodes.extentreports.ExtentReports;
-import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
 
 public class WebBrowser extends ReportManager {
@@ -29,25 +27,21 @@ public class WebBrowser extends ReportManager {
 	// NOT STATIC WebDriver type variable
 	private WebDriver driver = threadLocalDriver.get();
 
-	private ExtentReports extent = ReportManager.getInstance();
-
-	public static ExtentTest logger;
-
 	// Creation of WebDriver method with opportunity to choose browser in .xml
 	// file
-	@Parameters("browser")
+	@Parameters("browser")	
 	@BeforeTest
 	public void initWebBrowser(@Optional(value = "Firefox") String browser) {
-		logger = extent.startTest(this.getClass().getSimpleName()).assignCategory("Regression " + browser);
+		startTest(this.getClass().getSimpleName(), "Regression " + browser);
 		if (browser.equalsIgnoreCase("Firefox")) {
 			driver = new FirefoxDriver();
 			System.out.println("Firefox has started");
-			logger.log(LogStatus.INFO, "Firefox has started");
+			Logger().log(LogStatus.PASS, "Firefox has started");
 		} else if (browser.equalsIgnoreCase("Chrome")) {
 			System.setProperty("webdriver.chrome.driver", "./src/test/resources/chromedriver.exe");
 			driver = new ChromeDriver();
 			System.out.println("Chrome has started");
-			logger.log(LogStatus.INFO, "Chrome has started");
+			Logger().log(LogStatus.PASS, "Chrome has started");
 		} else if (browser.equalsIgnoreCase("Opera")) {
 			driver = new OperaDriver();
 		} else if (browser.equalsIgnoreCase("Safari")) {
@@ -91,13 +85,12 @@ public class WebBrowser extends ReportManager {
 			driver.quit();
 			threadLocalDriver.remove();
 			System.out.println("Browser closed");
-			logger.log(LogStatus.INFO, "Browser closed");
-			extent.endTest(logger);
+			closeTest();
 		}
 	}
 
 	@AfterSuite
 	public void flush() {
-		extent.flush();
+		closeReporter();
 	}
 }

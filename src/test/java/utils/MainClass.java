@@ -20,9 +20,9 @@ public class MainClass extends WebBrowser {
 		Driver().get(address);
 		String title = Driver().getTitle();
 		if (title.contains("is not available") || title.contains("Problem loading page")) {
-			logger.log(LogStatus.FATAL, title + logger.addScreenCapture(Screenshot.take("FATAL_Cannot_load_page")));
+			Logger().log(LogStatus.FATAL, title + Logger().addScreenCapture(Screenshot.take("FATAL_Cannot_load_page")));
 		} else {
-			logger.log(LogStatus.PASS, "Redirected to: " + address);
+			Logger().log(LogStatus.PASS, "Redirected to: " + address);
 		}
 	}
 
@@ -30,7 +30,7 @@ public class MainClass extends WebBrowser {
 		String currAddress = Driver().getCurrentUrl();
 		String title = Driver().getTitle();
 		if (title.contains("is not available") || title.contains("Problem loading page")) {
-			logger.log(LogStatus.FATAL, title + logger.addScreenCapture(Screenshot.take("FATAL_Cannot_load_page")));
+			Logger().log(LogStatus.FATAL, title + Logger().addScreenCapture(Screenshot.take("FATAL_Cannot_load_page")));
 		}
 		return currAddress;
 	}
@@ -42,7 +42,7 @@ public class MainClass extends WebBrowser {
 			element = wait.until(ExpectedConditions.visibilityOf(Driver().findElement(by)));
 		} catch (Exception e) {
 			System.out.println("Cannot find Element on the page" + e.getMessage());
-			logger.log(LogStatus.FAIL, "Cannot find element on the page. Stacktrace: " + e.getStackTrace() + logger
+			Logger().log(LogStatus.FAIL, "Cannot find element on the page. Stacktrace: " + e.getStackTrace() + Logger()
 					.addScreenCapture(Screenshot.take("FAIL_Cannot_find_element_" + new Random().nextInt(1000))));
 		}
 		return element;
@@ -53,9 +53,9 @@ public class MainClass extends WebBrowser {
 		if (element.isDisplayed() & element.getSize().getHeight() > 0 & element.getSize().getWidth() > 0) {
 			element.click();
 		} else {
-			logger.log(LogStatus.FAIL,
+			Logger().log(LogStatus.FAIL,
 					"Cannot click on element: element is not visible on page or it's dimensions are less then 0"
-							+ logger.addScreenCapture(
+							+ Logger().addScreenCapture(
 									Screenshot.take("FAIL_Cannot_click_on_element" + new Random().nextInt(1000))));
 		}
 	}
@@ -64,7 +64,7 @@ public class MainClass extends WebBrowser {
 		WebElement element = getElement(by);
 		element.clear();
 		element.sendKeys(text);
-		logger.log(LogStatus.PASS, "Entered text: " + text);
+		Logger().log(LogStatus.PASS, "Entered text: " + text);
 	}
 
 	public static void switchToFrame(String frameId) {
@@ -73,7 +73,7 @@ public class MainClass extends WebBrowser {
 		} catch (Exception e) {
 			System.out.println("Cannot switch to frame " + frameId);
 			Driver().switchTo().frame(frameId);
-			logger.log(LogStatus.FAIL, "Cannot swith to frame: " + frameId);
+			Logger().log(LogStatus.FAIL, "Cannot swith to frame: " + frameId);
 		}
 	}
 
@@ -89,9 +89,9 @@ public class MainClass extends WebBrowser {
 		WebDriver tab = null;
 		try {
 			tab = Driver().switchTo().window(getTabs().get(i));
-			logger.log(LogStatus.PASS, "Switched to tab " + tab.getTitle());
+			Logger().log(LogStatus.PASS, "Switched to tab " + tab.getTitle());
 		} catch (Exception e) {
-			logger.log(LogStatus.FAIL, "Cannot switch to tab");
+			Logger().log(LogStatus.FAIL, "Cannot switch to tab");
 		}
 		return tab;
 	}
@@ -103,7 +103,7 @@ public class MainClass extends WebBrowser {
 
 	public static void closeTab(int i) {
 		switchToTab(i).close();
-		logger.log(LogStatus.PASS, "Tab closed");
+		Logger().log(LogStatus.PASS, "Tab closed");
 	}
 
 	public static String getElementAtt(By by, String attName) {
@@ -116,7 +116,7 @@ public class MainClass extends WebBrowser {
 
 	public static void switchToDefaultFrame() {
 		Driver().switchTo().defaultContent();
-		logger.log(LogStatus.PASS, "Switched to default frame");
+		Logger().log(LogStatus.PASS, "Switched to default frame");
 	}
 
 	public static List<WebElement> getElements(By by) {
@@ -124,23 +124,23 @@ public class MainClass extends WebBrowser {
 	}
 
 	public static void assertEquals(Object actual, Object expected, String beforeMess) {
-		logger.log(LogStatus.INFO, beforeMess);
+		Logger().log(LogStatus.INFO, beforeMess);
 		if (actual.equals(expected)) {
-			logger.log(LogStatus.PASS, "Objects match");
+			Logger().log(LogStatus.PASS, "Objects match");
 		} else {
-			logger.log(LogStatus.FAIL, "Expected: '" + expected + "' Actual: '" + actual + "'"
-					+ logger.addScreenCapture(Screenshot.take("FAILED_" + new Random().nextInt(1000))));
+			Logger().log(LogStatus.FAIL, "Expected: '" + expected + "' Actual: '" + actual + "'"
+					+ Logger().addScreenCapture(Screenshot.take("FAILED_" + new Random().nextInt(1000))));
 			softAssert.assertEquals(actual, expected);
 		}
 	}
 
 	public static void assertTrue(boolean actual, String beforeMess) {
-		logger.log(LogStatus.INFO, beforeMess);
+		Logger().log(LogStatus.INFO, beforeMess);
 		if (actual) {
-			logger.log(LogStatus.PASS, "Objects match");
+			Logger().log(LogStatus.PASS, "Objects match");
 		} else {
-			logger.log(LogStatus.FAIL, "Expected: true, but false"
-					+ logger.addScreenCapture(Screenshot.take("FAILED_" + new Random().nextInt(1000))));
+			Logger().log(LogStatus.FAIL, "Expected: true, but false"
+					+ Logger().addScreenCapture(Screenshot.take("FAILED_" + new Random().nextInt(1000))));
 			softAssert.assertTrue(actual);
 		}
 	}
