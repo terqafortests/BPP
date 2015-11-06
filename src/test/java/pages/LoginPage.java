@@ -24,8 +24,8 @@ public class LoginPage extends MainClass {
         enterText(username, user);
         enterText(password, pass);
         clickOn(submit);
-        logger.log(LogStatus.PASS, "Clicked on Login button");
-        logger.log(LogStatus.PASS, "Logged in with: " + user + "/" + pass);
+        Logger().log(LogStatus.PASS, "Clicked on Login button");
+        Logger().log(LogStatus.PASS, "Logged in with: " + user + "/" + pass);
     }
 
 }

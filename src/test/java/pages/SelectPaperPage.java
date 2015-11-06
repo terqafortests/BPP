@@ -13,7 +13,7 @@ public class SelectPaperPage extends MainClass {
 	
 	public static void selectCourse(String courseName) {
 		clickOn(By.xpath("//div[@id='myModal']//label[contains(., '" + courseName + "')]"));
-		logger.log(LogStatus.PASS, "Selected course: " + courseName);
+		Logger().log(LogStatus.PASS, "Selected course: " + courseName);
 	}
 
 }

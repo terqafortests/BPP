@@ -22,22 +22,22 @@ public class MyLearningPage extends MainClass {
     public static void changeCourse(String name) {
         Select sel = new Select(getElement(dropDowm));
         sel.selectByVisibleText(name);
-        logger.log(LogStatus.PASS, "Changed course to: " + name);
+        Logger().log(LogStatus.PASS, "Changed course to: " + name);
 
     }
 
     public static void selectStep(int num) {
      clickOn(By.xpath("//div[@class='step_button']//*[contains(text(), 'Step " + num + "')]"));
-     logger.log(LogStatus.PASS, "Selected step: " + num);
+     Logger().log(LogStatus.PASS, "Selected step: " + num);
     }
 
     public static void selectTopic(int topNum) {
         clickOn(By.xpath("//div[@class='topics']//*[contains(text(), '" + topNum + "')]"));
-        logger.log(LogStatus.PASS, "Selected topic: " + topNum);
+        Logger().log(LogStatus.PASS, "Selected topic: " + topNum);
     }
     
     public static void selectActivity(int actNum) {
     	clickOn(By.xpath("//div[@class='subtopic']/div[contains(text(), '"+ actNum + "')]"));
-    	logger.log(LogStatus.PASS, "Selected learning activity: " + actNum);
+    	Logger().log(LogStatus.PASS, "Selected learning activity: " + actNum);
     }
 }
