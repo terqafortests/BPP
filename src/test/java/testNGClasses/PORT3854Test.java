@@ -14,7 +14,7 @@ public class PORT3854Test extends MainClass {
 		switchToFrame(HeaderPage.iFrame);
 		SelectPaperPage.selectCourse("My Super Course");
 		clickOn(SelectPaperPage.open);
-		logger.log(LogStatus.PASS, "Clicked on login button");
+		Logger().log(LogStatus.PASS, "Clicked on login button");
 		assertEquals(getCurrUrl(), "http://bpp-fusion-test.apolloglobal.int/group/student",
 				"Verifying if student is redirected to: http://bpp-fusion-test.apolloglobal.int/group/student");
 	}

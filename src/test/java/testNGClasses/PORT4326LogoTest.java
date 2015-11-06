@@ -1,7 +1,7 @@
 package testNGClasses;
 
 import org.openqa.selenium.By;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import pages.LoginPage;
@@ -18,7 +18,7 @@ public class PORT4326LogoTest extends MainClass {
 						"https://bpp-test.apolloglobal.int/ncas/themes/bpp/images/bpp-university-logo.png" } };
 	}
 
-	@BeforeTest
+	@BeforeMethod
 	public void preCon() {
 		getPage("https://bpp-test.apolloglobal.int/ncas/login?service=https://bpp-fusion-test.apolloglobal.int/delegate/fusion-loginconfirm");
 	}

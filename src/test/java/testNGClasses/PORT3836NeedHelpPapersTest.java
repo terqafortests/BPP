@@ -28,10 +28,10 @@ public class PORT3836NeedHelpPapersTest extends MainClass {
 	@Test(dataProvider = "Links")
 	public void port3836NeedHelpPapersTest(String link, String address) {
 		clickOn(SelectPaperPage.needHelp);
-		logger.log(LogStatus.PASS, "Clicked on Need Help link from Available papers page");
+		Logger().log(LogStatus.PASS, "Clicked on Need Help link from Available papers page");
 		switchToTab(1);
 		clickOn(By.linkText(link));
-		logger.log(LogStatus.PASS, "Clicked on " + link + " from Help page");
+		Logger().log(LogStatus.PASS, "Clicked on " + link + " from Help page");
 		switchToTab(2);
 		assertEquals(getCurrUrl(), address, "Verifyong if actual current addres equals: " + address);
 		closeTab(2);

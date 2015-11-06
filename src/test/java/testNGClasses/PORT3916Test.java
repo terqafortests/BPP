@@ -17,7 +17,7 @@ public class PORT3916Test extends MainClass {
 		switchToFrame(HeaderPage.iFrame);
 		SelectPaperPage.selectCourse("Roma Test Course 1");
 		clickOn(SelectPaperPage.open);
-		logger.log(LogStatus.PASS, "Clicked on Login button");
+		Logger().log(LogStatus.PASS, "Clicked on Login button");
 	}
 
 	@Test

@@ -25,7 +25,7 @@ public class PORT3836NeedHelpTest extends MainClass {
 		switchToFrame(HeaderPage.iFrame);
 		SelectPaperPage.selectCourse("My Super Course");
 		clickOn(SelectPaperPage.open);
-		logger.log(LogStatus.PASS, "Clickod on login button");
+		Logger().log(LogStatus.PASS, "Clickod on login button");
 	}
 
 	@Test(dataProvider = "Links")
@@ -33,10 +33,10 @@ public class PORT3836NeedHelpTest extends MainClass {
 		getPage(address1);
 		switchToFrame(HeaderPage.iFrame);
 		clickOn(By.linkText("Need Help"));
-		logger.log(LogStatus.PASS, "Clicked on Need Help link from " + address1 + " page");
+		Logger().log(LogStatus.PASS, "Clicked on Need Help link from " + address1 + " page");
 		switchToTab(1);
 		clickOn(By.linkText(link));
-		logger.log(LogStatus.PASS, "Clicked on " + link + " from Help page");
+		Logger().log(LogStatus.PASS, "Clicked on " + link + " from Help page");
 		switchToTab(2);
 		assertEquals(getCurrUrl(), address, "Verifyong if actual current addres equals: " + address);
 		closeTab(2);

@@ -31,7 +31,7 @@ public class PORT3816Test extends MainClass {
 		switchToFrame(HeaderPage.iFrame);
 		SelectPaperPage.selectCourse("Regression Test");
 		clickOn(SelectPaperPage.open);
-		logger.log(LogStatus.PASS, "Clicked on Open button");
+		Logger().log(LogStatus.PASS, "Clicked on Open button");
 		getPage("http://bpp-fusion-test.apolloglobal.int/group/student/my-profile");
 	}
 

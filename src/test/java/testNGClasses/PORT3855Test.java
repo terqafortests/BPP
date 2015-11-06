@@ -29,15 +29,15 @@ public class PORT3855Test extends MainClass {
 		for (WebElement e: courseList) {			
 			string.add(e.getText());
 		}
-		logger.log(LogStatus.PASS, "Course list from papers page is got");
+		Logger().log(LogStatus.PASS, "Course list from papers page is got");
 		SelectPaperPage.selectCourse("My Super Course");
 		clickOn(SelectPaperPage.open);
-		logger.log(LogStatus.PASS, "Clicked on login button");
+		Logger().log(LogStatus.PASS, "Clicked on login button");
 		List<WebElement> courseList2 = getElements(By.xpath("//select[@name='select_course']/option[@value != '0']"));
 		for (WebElement e: courseList2) {			
 			string1.add(e.getText());
 		}
-		logger.log(LogStatus.PASS, "Course list from learning page is got");
+		Logger().log(LogStatus.PASS, "Course list from learning page is got");
 		assertEquals(string, string1, "Verifying if courses list match");
 	}
 

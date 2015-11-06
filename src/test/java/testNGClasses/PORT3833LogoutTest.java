@@ -18,7 +18,7 @@ public class PORT3833LogoutTest extends MainClass {
 		switchToFrame(HeaderPage.iFrame);
 		SelectPaperPage.selectCourse("My Super Course");
 		clickOn(SelectPaperPage.open);
-		logger.log(LogStatus.PASS, "Clicked on Open button");
+		Logger().log(LogStatus.PASS, "Clicked on Open button");
 	}
 
 	@Test
