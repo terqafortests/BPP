@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="ParallelSuite" parallel="tests" thread-count="4">
+  <test name="ChromeTests">
+  <parameter name="browser" value="Chrome"/>
+    <classes>
+      <class name="testNGClasses.PORT4326MessageBackgroundTest"/>
+    </classes>
+  </test> <!-- ChromeTests -->
+</suite> <!-- ParallelSuite -->
