@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite" parallel="false">
+	<parameter name="browser" value="Firefox" />
+	<test name="Tests1">
+		<classes>
+			<class name="testNGClasses.PORT3833LoginTest" />
+		</classes>
+	</test>
+	<test name="Tests2">
+		<classes>
+			<class name="testNGClasses.PORT3816Test" />
+		</classes>
+	</test>
+	<test name="Tests3">
+		<classes>
+			<class name="testNGClasses.PORT4445Test" />
+		</classes>
+	</test>
+	<test name="Tests4">
+		<classes>
+			<class name="testNGClasses.PORT3833LogoutTest" />
+		</classes>
+	</test>
+	<test name="Tests5">
+		<classes>
+			<class name="testNGClasses.PORT3834CookiesDisabledTest" />
+		</classes>
+	</test>
+	<test name="Tests6">
+		<classes>
+			<class name="testNGClasses.PORT3854Test" />
+		</classes>
+	</test>
+	<test name="Tests7">
+		<classes>
+			<class name="testNGClasses.PORT3836NeedHelpTest" />
+		</classes>
+	</test>
+	<test name="Tests8">
+		<classes>
+			<class name="testNGClasses.PORT4249NoPaperTest" />
+		</classes>
+	</test>
+	<test name="Tests9">
+		<classes>
+			<class name="testNGClasses.PORT3832Test" />
+		</classes>
+	</test>
+	<test name="Tests10">
+		<classes>
+			<class name="testNGClasses.PORT3834InvDataTest" />
+		</classes>
+	</test>
+	<test name="Tests11">
+		<classes>
+			<class name="testNGClasses.PORT3838Test" />
+		</classes>
+	</test>
+	<test name="Tests12">
+		<classes>
+			<class name="testNGClasses.PORT3916Test" />
+		</classes>
+	</test>
+	<test name="Tests13">
+		<classes>
+			<class name="testNGClasses.PORT4326LogoTest" />
+		</classes>
+	</test>
+	<test name="Tests14">
+		<classes>
+			<class name="testNGClasses.PORT4326MessageBackgroundTest" />
+		</classes>
+	</test>
+	<test name="Tests15">
+		<classes>
+			<class name="testNGClasses.PORT3817Test" />
+		</classes>
+	</test>
+	<test name="Tests16">
+		<classes>
+			<class name="testNGClasses.PORT3858Test" />
+		</classes>
+	</test>
+	<test name="Tests17">
+		<classes>
+			<class name="testNGClasses.PORT4249AvailablePapersTest" />
+		</classes>
+	</test>
+	<test name="Tests18">
+		<classes>
+			<class name="testNGClasses.PORT3839Test" />
+		</classes>
+	</test>
+	<test name="Tests19">
+		<classes>
+			<class name="testNGClasses.PORT3855Test" />
+		</classes>
+	</test>
+	<test name="Tests20">
+		<classes>
+			<class name="testNGClasses.PORT3836NeedHelpPapersTest" />
+		</classes>
+	</test>
+	<test name="Tests21">
+		<classes>
+			<class name="testNGClasses.PORT3834InvAddressTest" />
+		</classes>
+	</test>
+	<test name="Tests22">
+		<classes>
+			<class name="testNGClasses.PORT3863Test" />
+		</classes>
+	</test>
+	<test name="Tests23">
+		<classes>
+			<class name="testNGClasses.PORT3837ElPresTest" />
+		</classes>
+	</test>
+	<test name="Tests24">
+		<classes>
+			<class name="testNGClasses.PORT4249MyGroupsVisitGroupsTest" />
+		</classes>
+	</test> <!-- Test -->
+</suite> <!-- Suite -->
