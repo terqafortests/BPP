@@ -22,11 +22,11 @@
 			<class name="testNGClasses.PORT3833LogoutTest" />
 		</classes>
 	</test>
-	<test name="Tests5">
+<!-- 	<test name="Tests5">
 		<classes>
 			<class name="testNGClasses.PORT3834CookiesDisabledTest" />
 		</classes>
-	</test>
+	</test> -->
 	<test name="Tests6">
 		<classes>
 			<class name="testNGClasses.PORT3854Test" />
