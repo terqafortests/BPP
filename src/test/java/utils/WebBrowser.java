@@ -52,12 +52,6 @@ public class WebBrowser extends ReportManager {
 		return threadLocalDriver.get();
 	}
 
-//	@AfterMethod
-//	public void finishTest() {
-//		closeTest();
-//		System.out.println("Test finished");
-//	}
-
 	@AfterTest(alwaysRun = true)
 	public void closeWebBrowser() {
 		if (driver != null) {
