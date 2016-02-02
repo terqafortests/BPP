@@ -22,7 +22,7 @@ public class WebBrowser extends ReportManager {
 
 	@Parameters("browser")
 	@BeforeTest
-	public void initWebBrowser(@Optional(value = "Firefox") String browser) {
+	public void initWebBrowser(@Optional(value = "Chrome") String browser) {
 		startTest(this.getClass().getSimpleName(), "Regression " + browser);
 		if (browser.equalsIgnoreCase("Firefox")) {
 			driver = new FirefoxDriver();
